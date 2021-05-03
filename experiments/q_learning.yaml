@@ -1,0 +1,34 @@
+project: hkristof03/OpenAIGymFrozenLake
+api_token: eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiIwZGExNjY4NS1mZjA4LTQ1ZGQtYjM0Yi1jZWJiN2IxOTgzY2YifQ==
+
+env:
+  id: FrozenLake-v0
+  map_name: 8x8
+  is_slippery: True
+
+tags:
+  - q_learning
+  - control
+  - epsilon_greedy
+  - exponential_decay
+  - reward_system_change
+
+parameters:
+  num_episodes: 100000
+  policy: epsilon_greedy_policy
+  discount_factor: 0.98
+  learning_rate: 0.01
+  max_epsilon: 1.0
+  min_epsilon: 0.01
+  decay_rate: 0.0001
+
+# iterate on parameters and test their effect
+# a numpy ndarray is generated from the three parameters
+parameters_to_iterate:
+#  decay_rate: [0.00009, 0.00012, 6]
+
+# rl algorithm to run as (module, function)
+rl_algorithm: !!python/tuple [q_learning, q_learning_control_epsilon_greedy]
+
+# name of the file to where Q table must be written
+file_name: q_learning_control_epsilon_greedy
